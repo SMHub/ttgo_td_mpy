@@ -20,7 +20,7 @@ Button2_Pin = 0;  #left button
 button1 = Pin(Button1_Pin, Pin.IN, Pin.PULL_UP)
 button2 = Pin(Button2_Pin, Pin.IN, Pin.PULL_UP)
 
-rotation=6
+rotation=0
 
 def callback_b1(p):
     clear_screen()
@@ -74,12 +74,12 @@ def random_color():
 start_time = time.time()  # Record the start time
 
 def format_elapsed_time(seconds):
-    hours = int(seconds // 3600)  # Integer division and convert to int
-    minutes = int((seconds % 3600) // 60)  # Integer division and convert to int
-    remaining_seconds = int(seconds % 60)  # Modulo and convert to int
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    remaining_seconds = int(seconds % 60)
 
-    # Use string formatting to ensure leading zeros and correct types
     return "{:02d}:{:02d}:{:02d}".format(hours, minutes, remaining_seconds)
+
 
 
 def main():
@@ -92,12 +92,14 @@ def main():
       clear_screen()
       BLK.value(1)
       display.fill(0);
-      v = 20
-      display.text((0, v), "Time", random_color(), sysfont, 3, nowrap=True)
+      v = 10
+      display.text((0, v), "TIME ", random_color(), sysfont, 3, nowrap=True)
       
+      v=40
       elapsed_seconds = time.time() - start_time
       elapsed_time_str = format_elapsed_time(elapsed_seconds)
-      display.text((80, v), elapsed_time_str, random_color(), sysfont, 3, nowrap=True)
+      print(elapsed_time_str)
+      display.text((0, v), elapsed_time_str, random_color(), sysfont, 3, nowrap=True)
       
       v += sysfont["Height"]+20
       display.text((0, v), "Prog.", random_color(), sysfont, 3, nowrap=True)
